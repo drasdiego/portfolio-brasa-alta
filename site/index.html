@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brasa Alta, hamburgueria na lenha (projeto conceitual de portfólio)</title>
+<meta name="description" content="Projeto conceitual de portfólio: site de uma hamburgueria fictícia, a Brasa Alta, com cardápio, bandeja de pedido e horário. Marca, imagens, preços e endereço são fictícios, criados com IA.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#201A16">
+<link rel="icon" href="img/marca.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="topo" id="topo">
+  <div class="aviso" role="note">
+    <div class="contorno">Projeto de portfólio. Marca e imagens criadas com IA. Preços fictícios, referência região Sul.</div>
+  </div>
+  <header class="cabecalho">
+    <div class="contorno cabecalho-in">
+      <a class="marca" href="#inicio" aria-label="Brasa Alta, ir ao início">
+        <svg class="chama" viewBox="0 0 24 28" aria-hidden="true" focusable="false"><path fill="#8F3A22" d="M12.6 0.8C13.6 6.2 10.6 8.4 8.2 11.3C6 13.9 4.6 16.2 4.6 19.4C4.6 24 7.9 27.2 12 27.2C16.1 27.2 19.4 24 19.4 19.6C19.4 16.5 18 14.4 16.4 12.6C16.2 14.5 15.3 15.8 13.9 16.2C15 11.8 14.2 6.6 12.6 0.8Z"/><path fill="#F2E8D6" d="M12 27.2C9.9 27.2 8.4 25.7 8.4 23.6C8.4 21.6 9.9 20.4 12 18C14.1 20.4 15.6 21.6 15.6 23.6C15.6 25.7 14.1 27.2 12 27.2Z"/></svg>
+        <span>Brasa Alta</span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#cardapio">Cardápio</a>
+        <a href="#na-casa">Na casa</a>
+        <a href="#endereco">Endereço</a>
+      </nav>
+      <button type="button" class="btn-bandeja pressionavel" id="abrir-header" aria-controls="bandeja" aria-expanded="false" aria-label="Bandeja, vazia">Bandeja <span class="contador" id="contador" aria-hidden="true">0</span></button>
+    </div>
+  </header>
+</div>
+
+<script>document.documentElement.style.setProperty("--topo",document.getElementById("topo").offsetHeight+"px");</script>
+<main id="conteudo" tabindex="-1">
+
+  <section class="hero escuro" id="inicio" aria-labelledby="titulo-hero">
+    <video class="hero-video" id="video-hero" muted loop playsinline preload="none" poster="media/brasa-alta-poster.jpg" width="1280" height="720" aria-hidden="true" tabindex="-1">
+      <source src="media/brasa-alta-12s.mp4" type="video/mp4">
+    </video>
+    <div class="hero-veu" aria-hidden="true"></div>
+    <canvas class="brasas brasas-hero" aria-hidden="true"></canvas>
+    <div class="contorno hero-conteudo">
+      <h1 id="titulo-hero"><span class="palavra">Brasa</span> <span class="palavra">Alta</span></h1>
+      <p class="hero-linha">Hambúrguer na lenha, no Centro de Balneário Camboriú.</p>
+      <div class="hero-meta">
+        <p class="chip" id="status-hero">Terça a domingo, 18h às 23h30</p>
+        <p class="servico">Retirada em cerca de 25 min</p>
+      </div>
+      <a class="btn btn-brasa pressionavel" id="cta-hero" href="#cardapio">Montar meu pedido</a>
+    </div>
+  </section>
+
+  <section class="cardapio" id="cardapio" aria-labelledby="t-cardapio">
+    <div class="contorno cardapio-cab">
+      <h2 class="titulo-sec titulo-cardapio" id="t-cardapio">
+        <svg class="carimbo" viewBox="0 0 24 28" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.6 0.8C13.6 6.2 10.6 8.4 8.2 11.3C6 13.9 4.6 16.2 4.6 19.4C4.6 24 7.9 27.2 12 27.2C16.1 27.2 19.4 24 19.4 19.6C19.4 16.5 18 14.4 16.4 12.6C16.2 14.5 15.3 15.8 13.9 16.2C15 11.8 14.2 6.6 12.6 0.8Z"/></svg>
+        Cardápio
+      </h2>
+      <p class="aviso-precos">Preços fictícios, com referência na região Sul do Brasil em 2026.</p>
+      <p>Toque em Adicionar e confira tudo na bandeja antes de enviar.</p>
+      <div class="busca">
+        <svg class="lupa" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12.8 12.8L17.5 17.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="search" id="busca" placeholder="Buscar no cardápio" aria-label="Buscar no cardápio" autocomplete="off" enterkeyhint="search">
+      </div>
+    </div>
+
+    <div class="cats" id="cats">
+      <div class="cats-in">
+        <nav class="cats-nav" id="cats-nav" aria-label="Categorias do cardápio">
+          <span class="cats-ind" id="cats-ind" aria-hidden="true"></span>
+        </nav>
+      </div>
+    </div>
+
+    <div class="contorno grade-cardapio">
+      <div class="coluna-menu">
+        <figure class="midia foto-topo">
+          <div class="quadro">
+            <video class="vivo" muted loop playsinline preload="none" poster="media/loop-bandeja.jpg" width="960" height="540" aria-hidden="true" tabindex="-1">
+              <source src="media/loop-bandeja.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+        <div class="menu-lista" id="menu-lista">
+          <noscript><p>O cardápio e a bandeja precisam de JavaScript nesta demonstração.</p></noscript>
+        </div>
+        <div class="busca-vazia" id="busca-vazia" hidden>
+          <p>Nada encontrado para "<span id="busca-termo"></span>". Tente outro nome.</p>
+          <button type="button" class="btn pressionavel" id="busca-limpar">Limpar busca</button>
+        </div>
+      </div>
+
+      <aside class="bandeja" id="bandeja" aria-labelledby="bandeja-titulo">
+        <div class="folha-cabeca" id="alca">
+          <span class="alca" aria-hidden="true"></span>
+          <div class="folha-linha">
+            <h2 id="bandeja-titulo" tabindex="-1">Sua bandeja</h2>
+            <button type="button" class="fechar pressionavel" id="fechar-bandeja">Fechar</button>
+          </div>
+        </div>
+        <div class="folha-corpo">
+          <p class="vazia" id="bandeja-vazia">Sua bandeja está vazia. Escolha um hambúrguer no cardápio.</p>
+          <div id="bandeja-itens" hidden>
+            <ul class="lista-bandeja" id="bandeja-lista"></ul>
+            <p class="total"><span>Total</span> <strong id="bandeja-total">R$ 0,00</strong></p>
+          </div>
+          <form id="form-pedido" novalidate>
+            <div class="campos" id="bandeja-campos" hidden>
+              <div class="campo">
+                <label for="obs">Observação (opcional)</label>
+                <textarea id="obs" rows="3" maxlength="240" placeholder="Ex.: carne ao ponto, sem cebola"></textarea>
+              </div>
+              <fieldset class="modo">
+                <legend>Como vai ser</legend>
+                <label><input type="radio" name="modo" value="Retirar no balcão" checked> Retirar no balcão</label>
+                <label><input type="radio" name="modo" value="Comer na casa"> Comer na casa</label>
+              </fieldset>
+            </div>
+            <button type="submit" class="btn btn-brasa pressionavel" id="enviar" disabled>Enviar no WhatsApp</button>
+            <p class="nota-demo">Demonstração: nenhuma conversa real é aberta. Você verá uma conversa simulada.</p>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="na-casa escuro" id="na-casa" aria-labelledby="t-casa">
+    <canvas class="brasas brasas-casa" aria-hidden="true"></canvas>
+    <div class="contorno">
+      <h2 class="titulo-sec" id="t-casa">Na casa</h2>
+      <div class="casa-grade">
+        <figure class="casa-a">
+          <div class="quadro">
+            <video class="vivo" muted loop playsinline preload="none" poster="media/loop-grelha.jpg" width="960" height="540" aria-hidden="true" tabindex="-1">
+              <source src="media/loop-grelha.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>A grelha acende às 16h, com carvão e lenha de eucalipto.</figcaption>
+        </figure>
+        <figure class="casa-b">
+          <div class="quadro zoom revelar">
+            <img src="img/salao-tijolo.jpg" width="1600" height="893" loading="lazy" alt="Salão de tijolo com janelões e varal de luzes sobre as mesas">
+          </div>
+          <figcaption>Salão de tijolo, mesas compartilhadas e chope na pressão.</figcaption>
+        </figure>
+        <figure class="casa-c">
+          <div class="quadro">
+            <video class="vivo" muted loop playsinline preload="none" poster="media/loop-tampa.jpg" width="960" height="540" aria-hidden="true" tabindex="-1">
+              <source src="media/loop-tampa.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>O brioche tosta na própria grelha e o blend é moído no dia.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="endereco sobre-tijolo" id="endereco" aria-labelledby="t-endereco">
+    <div class="contorno endereco-grade">
+      <h2 class="titulo-sec" id="t-endereco">Endereço e horário</h2>
+      <figure class="endereco-foto">
+        <div class="quadro zoom revelar">
+          <img src="img/fachada-noite.jpg" width="1600" height="893" loading="lazy" alt="Fachada de esquina à noite, com o letreiro Brasa Alta Burger aceso, portas abertas e mesas na calçada">
+        </div>
+      </figure>
+      <div class="endereco-dados">
+        <address>Rua 2000, 000, Centro, Balneário Camboriú (endereço fictício)</address>
+        <p class="chip" id="status-endereco">Terça a domingo, 18h às 23h30</p>
+        <table class="horario" id="horario">
+          <caption class="sr-only">Horário de funcionamento</caption>
+          <tbody>
+            <tr data-dia="1"><th scope="row">Segunda</th><td>Fechado</td></tr>
+            <tr data-dia="2"><th scope="row">Terça</th><td>18h às 23h30</td></tr>
+            <tr data-dia="3"><th scope="row">Quarta</th><td>18h às 23h30</td></tr>
+            <tr data-dia="4"><th scope="row">Quinta</th><td>18h às 23h30</td></tr>
+            <tr data-dia="5"><th scope="row">Sexta</th><td>18h às 23h30</td></tr>
+            <tr data-dia="6"><th scope="row">Sábado</th><td>18h às 23h30</td></tr>
+            <tr data-dia="0"><th scope="row">Domingo</th><td>18h às 23h30</td></tr>
+          </tbody>
+        </table>
+        <div class="endereco-acao"><button type="button" class="btn pressionavel" id="wa-endereco" aria-haspopup="dialog">Falar no WhatsApp</button></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape escuro">
+  <div class="contorno">
+    <p class="rodape-texto"><span>Brasa Alta é uma marca fictícia.</span> <span>Projeto conceitual de site por Diego Arruda, com imagens e vídeo gerados por IA.</span> <span>Os preços do cardápio são fictícios e tomam como referência hamburguerias artesanais da região Sul do Brasil em 2026.</span></p>
+    <a href="https://drasdiego.com.br">drasdiego.com.br</a>
+  </div>
+</footer>
+
+<div class="barra-bandeja" id="barra">
+  <button type="button" class="barra-btn pressionavel" id="abrir-barra" aria-controls="bandeja" aria-expanded="false" aria-label="Ver bandeja, vazia">
+    <span>Ver bandeja</span>
+    <span class="barra-resumo" id="barra-resumo">Bandeja vazia</span>
+  </button>
+</div>
+
+<button type="button" class="wa-flutuante pressionavel" id="wa-flutuante" aria-label="Falar no WhatsApp, demonstração" aria-haspopup="dialog">
+  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path d="M8 3h8a5 5 0 0 1 5 5v6a5 5 0 0 1-5 5h-1.5L11 22.2V19H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6h1.7l.8 2-1.1.8a6 6 0 0 0 2.1 2.1l.8-1.1 2 .8v1.7a1.3 1.3 0 0 1-1.4 1.3A7.9 7.9 0 0 1 8 9a1.3 1.3 0 0 1 1.2-1.4z" fill="#fff"/></svg>
+  <span class="wa-texto" aria-hidden="true">WhatsApp</span>
+</button>
+
+<div class="vu" id="vu" hidden data-nao-inert></div>
+<div class="toast" id="toast" data-nao-inert>
+  <span id="toast-texto"></span>
+  <button type="button" class="toast-btn pressionavel" id="toast-desfazer">Desfazer</button>
+</div>
+<div class="sr-only" id="anuncio" role="status" aria-live="polite" aria-atomic="true" data-nao-inert></div>
+
+<dialog class="dialogo" id="dialogo-pedido" aria-labelledby="dialogo-titulo" data-titulo="dialogo-titulo" data-nao-inert>
+  <div class="dialogo-in">
+    <div class="dlg-form">
+      <h2 id="dialogo-titulo">Mensagem do pedido</h2>
+      <p>Esta é a mensagem que seria enviada para a casa.</p>
+      <pre class="mensagem" id="mensagem" tabindex="0" aria-label="Texto da mensagem"></pre>
+      <p class="valores-ficticios">Valores fictícios, referência região Sul do Brasil.</p>
+      <p class="aviso-alcool" id="aviso-alcool" hidden>Venda de bebida alcoólica só para maiores de 18 anos. Se beber, não dirija.</p>
+      <p class="nota-demo">Na versão real, o botão Enviar no WhatsApp abre a conversa com a casa, com a mensagem pronta.</p>
+      <div class="dialogo-acoes">
+        <button type="button" class="btn btn-wa pressionavel" id="enviar-pedido"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M8 3h8a5 5 0 0 1 5 5v6a5 5 0 0 1-5 5h-1.5L11 22.2V19H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6h1.7l.8 2-1.1.8a6 6 0 0 0 2.1 2.1l.8-1.1 2 .8v1.7a1.3 1.3 0 0 1-1.4 1.3A7.9 7.9 0 0 1 8 9a1.3 1.3 0 0 1 1.2-1.4z" fill="#fff"/></svg><span>Enviar no WhatsApp</span></button>
+        <button type="button" class="btn pressionavel" id="fechar-dialogo">Voltar</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="dialogo dialogo-chat" id="dialogo-wa" aria-labelledby="chat-titulo" data-nao-inert>
+  <div class="dialogo-in">
+    <div class="conv-cab">
+      <svg viewBox="0 0 24 28" width="26" height="30" aria-hidden="true" focusable="false"><path d="M12.6 0.8C13.6 6.2 10.6 8.4 8.2 11.3C6 13.9 4.6 16.2 4.6 19.4C4.6 24 7.9 27.2 12 27.2C16.1 27.2 19.4 24 19.4 19.6C19.4 16.5 18 14.4 16.4 12.6C16.2 14.5 15.3 15.8 13.9 16.2C15 11.8 14.2 6.6 12.6 0.8Z" fill="#E86A1E"/></svg>
+      <div class="conv-quem">
+        <h2 id="chat-titulo" tabindex="-1">Brasa Alta</h2>
+        <p>Conversa de demonstração</p>
+      </div>
+      <button type="button" class="btn pressionavel conv-fechar" id="wa-fechar">Fechar</button>
+    </div>
+    <div class="conv-log" id="chat-log" role="log" aria-label="Conversa com a Brasa Alta"></div>
+    <div class="chips" id="chat-chips" role="group" aria-label="Sugestões de resposta"></div>
+    <form class="chat-form" id="chat-form">
+      <label for="chat-texto" class="sr-only">Escreva uma mensagem</label>
+      <input type="text" id="chat-texto" placeholder="Escreva uma mensagem" maxlength="240" autocomplete="off" enterkeyhint="send">
+      <button type="submit" class="btn btn-wa pressionavel">Enviar</button>
+    </form>
+    <p class="nota-demo">Demonstração: nenhuma mensagem saiu do site. Na versão real, o pedido vai para o WhatsApp da casa.</p>
+  </div>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>

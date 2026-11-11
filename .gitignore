@@ -1,0 +1,12 @@
+.DS_Store
+Midia/
+nao-usados/
+referencias/
+capturas/*
+!capturas/desktop-primeira-tela.png
+!capturas/celular-primeira-tela.png
+!capturas/desktop-conversa-pedido.png
+!capturas/celular-chat-respostas.png
+!capturas/desktop-na-casa.png
+!capturas/celular-bandeja.png
+briefing.md
