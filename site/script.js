@@ -996,6 +996,7 @@
   });
   $("#fechar-dialogo").addEventListener("click", function () { dialogo.close(); });
 
+  $("#t-cardapio").tabIndex = -1;
   var NOTA_DEMO = "Demonstração: nenhuma mensagem saiu do site. Na versão real, o pedido vai para o WhatsApp da casa.";
   var enviarPedidoBtn = $("#enviar-pedido");
   var conv = { timers: [] };
@@ -1135,7 +1136,6 @@
     tx.appendChild(el("p", "", "Conversa de demonstração"));
     cab.appendChild(tx);
     var log = el("div", "conv-log");
-    log.setAttribute("role", "log");
     log.setAttribute("aria-label", "Conversa com a Brasa Alta");
     var eu = criarBolhaEu(texto);
     log.appendChild(eu.el);
@@ -1189,6 +1189,7 @@
     atualizar();
     mostrarToastDesfazer("Bandeja esvaziada", itens);
     anunciar("Pedido enviado");
+    toastDesfazer.focus({ preventScroll: true });
   }
 
   var dialogoWa = $("#dialogo-wa");
@@ -1213,7 +1214,6 @@
   function nomesVeg() {
     var nomes = [];
     CARDAPIO.forEach(function (cat) {
-      if (cat.id !== "hamburgueres" && cat.id !== "acompanhamentos") return;
       cat.itens.forEach(function (d) {
         if ((d.marcas || []).indexOf("veg") > -1) nomes.push(d.nome);
       });
@@ -1225,8 +1225,8 @@
     CARDAPIO.forEach(function (cat) {
       if (cat.id !== "chope") return;
       cat.itens.forEach(function (d) {
-        if (!d.tamanhos) return;
-        linhas.push(d.nome + ": " + d.tamanhos.map(function (t) { return t.rotulo + " " + moedaTexto(t.preco); }).join(" e "));
+        if (d.tamanhos) linhas.push(d.nome + ": " + d.tamanhos.map(function (t) { return t.rotulo + " " + moedaTexto(t.preco); }).join(" e "));
+        else linhas.push(d.nome + ", " + moedaTexto(d.preco));
       });
     });
     return linhas.join("\n") + "\n" + AVISO_ALCOOL;
@@ -1235,7 +1235,8 @@
     var alvo = $(sel);
     if (alvo) alvo.scrollIntoView({ behavior: reduz.matches ? "auto" : "smooth", block: "start" });
   }
-  function fecharChatE(fn) {
+  function fecharChatE(fn, foco) {
+    if (foco) chat.abridor = foco;
     dialogoWa.close();
     window.setTimeout(fn, 60);
   }
@@ -1267,7 +1268,7 @@
               buscaEl.value = "vegetariano";
               aplicarBusca();
               irPara("#cardapio");
-            });
+            }, $("#t-cardapio"));
           }
         }
       };
@@ -1278,7 +1279,7 @@
       texto: "Monte seu pedido no cardápio e toque em Enviar no WhatsApp na bandeja.",
       acao: tem
         ? { texto: "Ver minha bandeja", fazer: function () { fecharChatE(function () { if (desktop.matches) irPara("#bandeja"); else abrirFolha(btnHeader); }); } }
-        : { texto: "Abrir cardápio", fazer: function () { fecharChatE(function () { irPara("#cardapio"); }); } }
+        : { texto: "Abrir cardápio", fazer: function () { fecharChatE(function () { irPara("#cardapio"); }, $("#t-cardapio")); } }
     };
   }
 

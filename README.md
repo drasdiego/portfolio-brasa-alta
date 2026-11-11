@@ -10,7 +10,7 @@ Site conceitual de uma hamburgueria fictícia na brasa, com cardápio, busca, pe
 
 ## O que o site faz
 
-- **Cardápio de 51 itens em 9 categorias**, gerado a partir de uma lista de dados, com barra de categorias fixa que acompanha a rolagem.
+- **Cardápio de 51 itens em 9 categorias**, gerado a partir de uma lista de dados, com barra de categorias fixa que acompanha a rolagem. A categoria Molhos e adicionais reúne dois subgrupos, por isso a pesquisa de preços lista 10 tabelas.
 - **Busca** sem acento e sem diferenciar maiúsculas, por nome, descrição, categoria e etiqueta.
 - **Bandeja de pedido**: o botão Adicionar vira controle de quantidade, chopes com seletor de 300 e 500 ml, total em tempo real, observação e forma de retirada. No celular, a bandeja é uma folha arrastável com mola.
 - **Envio simulado**: o pedido vira uma conversa com resposta da casa, que muda conforme o horário de Brasília, a forma de retirada e a presença de bebida alcoólica.
@@ -48,12 +48,19 @@ site/
 ├── index.html
 ├── styles.css
 ├── script.js
-├── fonts/   Big Shoulders Display e Archivo (SIL Open Font License)
+├── fonts/   Big Shoulders Display e Archivo, com as licenças OFL
 ├── img/
 └── media/   vídeo de 12 s e trechos curtos em loop
 ```
 
 Para abrir localmente, basta abrir `site/index.html` no navegador.
+
+## Licença
+
+- **Código** (HTML, CSS e JavaScript): licença MIT, no arquivo [LICENSE](LICENSE). Pode ser reutilizado mantendo o aviso de copyright.
+- **Marca, imagens e vídeo** (nome e identidade Brasa Alta, arquivos em `site/img/`, `site/media/`, `site/og-imagem.jpg` e `capturas/`): criados com IA para este projeto conceitual e não estão incluídos na licença MIT. Estão aqui só para exibir o projeto; não use como marca, em produto ou em material comercial.
+- **Fontes** (Big Shoulders Display e Archivo, em `site/fonts/`): SIL Open Font License 1.1, dos respectivos autores, com o texto da licença ao lado dos arquivos ([OFL-BigShouldersDisplay.txt](site/fonts/OFL-BigShouldersDisplay.txt) e [OFL-Archivo.txt](site/fonts/OFL-Archivo.txt)).
+- **Cardápio e preços**: fictícios, com a pesquisa de referência em [pesquisa-cardapio.md](pesquisa-cardapio.md).
 
 ## Como foi feito
 
